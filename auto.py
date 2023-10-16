@@ -3,17 +3,25 @@ import smtplib
 from datetime import datetime
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-import requests
-from io import BytesIO
-file_content = 'Book12.xlsx'
-workbook = openpyxl.load_workbook(file_content)
+import os
+
+# Specify the path to the Excel file within your repository
+excel_file_path = 'automail/Book12.xlsx'
+
+# Load the Excel workbook
+try:
+    workbook = openpyxl.load_workbook(excel_file_path)
+except FileNotFoundError:
+    print(f"Excel file '{excel_file_path}' not found.")
+    # Handle the error or exit gracefully
+
 sheet = workbook['Sheet1']
 
 today = datetime.today().strftime('%m-%d')
 
 # Your email and password (consider using environment variables for security)
-from_email = 'trailidsam@gmail.com'
-password = 'sufapdhwpmytxyla'
+from_email = os.environ.get('trailidsam@gmail.com')  # Use environment variables to protect your email and password
+password = os.environ.get('sufapdhwpmytxyla')
 
 # Initialize the SMTP server
 server = smtplib.SMTP('smtp.gmail.com', 587)
@@ -27,15 +35,15 @@ for row in sheet.iter_rows(values_only=True):
         # Send birthday email
         subject = 'Happy Birthday!'
         message = f"Dear {name},\n\nHappy Birthday! 🎉🎂\n\nBest wishes, Your Name"
-        # ... Send the email using smtplib
 
-        # Send reminder emails to others
-        for row2 in sheet.iter_rows(values_only=True):
-            name2, _, email2 = row2
-            if email2 and email2 != email:
-                subject2 = f"Today is {name}'s birthday!"
-                message2 = f"Hi {name2},\n\nJust a reminder that today is {name}'s birthday. Don't forget to send your warm wishes!"
-                # ... Send the email using smtplib
+        msg = MIMEMultipart()
+        msg['From'] = from_email
+        msg['To'] = email
+        msg['Subject'] = subject
+
+        msg.attach(MIMEText(message, 'plain'))
+
+        server.sendmail(from_email, email, msg.as_string())
 
 # Close the SMTP server and the Excel workbook
 server.quit()
