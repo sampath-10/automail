@@ -1,8 +1,7 @@
 name: Birthday Reminder
 
 on:
-  schedule:
-    - cron: '40 9 * * *'  # Runs the script every day at 12:00 PM UTC
+  workflow_dispatch:  # Allow manual triggering
 
 jobs:
   run-python-script:
