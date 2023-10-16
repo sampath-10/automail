@@ -6,7 +6,7 @@ from email.mime.multipart import MIMEMultipart
 import os
 
 # Specify the path to the Excel file within your repository
-excel_file_path = 'automail/Book12.xlsx'
+excel_file_path = 'Book12.xlsx'
 
 # Load the Excel workbook
 try:
