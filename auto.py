@@ -5,18 +5,9 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import requests
 from io import BytesIO
-
-# Define the GitHub raw URL to the Excel file
-github_raw_url = 'https://raw.githubusercontent.com/sampath-10/automail/main/Book12.xlsx'
-
-# Fetch the Excel file from the GitHub URL
-response = requests.get(github_raw_url)
-if response.status_code == 200:
-    file_content = BytesIO(response.content)
-    workbook = openpyxl.load_workbook(file_content)
-    sheet = workbook['Sheet1']
-else:
-    print("Failed to fetch the Excel file. Check the URL or your internet connection.")
+file_content = 'Book12.xlsx'
+workbook = openpyxl.load_workbook(file_content)
+sheet = workbook['Sheet1']
 
 today = datetime.today().strftime('%m-%d')
 
