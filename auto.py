@@ -4,7 +4,7 @@ import smtplib
 from datetime import datetime
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart # Import BytesIO to work with file content in memory
-fp = r'C:\Users\sreeh\Downloads\Book12.xlsx'
+fp = r'Book12.xlsx'
 workbook = openpyxl.load_workbook(fp)
 sheet = workbook['Sheet1']
 today = datetime.today().strftime('%m-%d')
