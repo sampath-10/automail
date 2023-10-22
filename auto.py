@@ -34,7 +34,7 @@ for row in sheet.iter_rows(min_row=2, values_only=True):
         # It's their birthday, send an email
         message = MIMEMultipart()
         message['From'] = email_address
-        message['To'] = email_address
+        message['To'] = 'sampathgaming04@gmail.com'
         message['Subject'] = f'Happy Birthday, {name}!'
 
         # Customize the email body as you like
