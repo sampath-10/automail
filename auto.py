@@ -43,6 +43,7 @@ for row in sheet.iter_rows(min_row=2, values_only=True):
 
         # Send the email
         server.sendmail(email_address, email_address, message.as_string())
+        print(f"mail sent to {name} sucessfully ")
 
 # Quit the SMTP server
 server.quit()
