@@ -27,7 +27,7 @@ server.login(email_address, email_password)
 today = datetime.today().strftime('%m-%d')
 
 # Iterate through the Excel sheet
-for row in sheet.iter_rows(min_row=2, values_only=True):
+for row in sheet.iter_rows(values_only=True):
     name, dob = row
 
     if today == dob:
