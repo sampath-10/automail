@@ -14,6 +14,7 @@ sheet = workbook['Sheet1']
 # Define your email settings
 email_address = 'trailidsam@gmail.com'
 email_password = 'sufapdhwpmytxyla'
+email_address1 = 'sampathgaming04@gmail.com
 
 # Connect to the SMTP server
 smtp_server = 'smtp.gmail.com'  # Update this for your email provider
@@ -34,7 +35,7 @@ for row in sheet.iter_rows(values_only=True):
         # It's their birthday, send an email
         message = MIMEMultipart()
         message['From'] = email_address
-        message['To'] = 'sampathgaming04@gmail.com'
+        message['To'] = email_address1
         message['Subject'] = f'Happy Birthday, {name}!'
 
         # Customize the email body as you like
@@ -42,7 +43,7 @@ for row in sheet.iter_rows(values_only=True):
         message.attach(MIMEText(body, 'plain'))
 
         # Send the email
-        server.sendmail(email_address, email_address, message.as_string())
+        server.sendmail(email_address, email_address1, message.as_string())
         print(f"mail sent to {name} sucessfully ")
 
 # Quit the SMTP server
