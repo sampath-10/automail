@@ -30,7 +30,7 @@ today = datetime.today().strftime('%m-%d')
 for row in sheet.iter_rows(min_row=2, values_only=True):
     name, dob = row
 
-    if today == dob_str:
+    if today == dob:
         # It's their birthday, send an email
         message = MIMEMultipart()
         message['From'] = email_address
