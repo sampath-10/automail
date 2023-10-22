@@ -9,7 +9,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2.2  # Use a version that supports Node.js 16
+        uses: actions/checkout@v2.1  # Use a version that supports Node.js 16
 
 
       - name: Set up Python
