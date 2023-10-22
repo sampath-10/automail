@@ -14,7 +14,7 @@ sheet = workbook['Sheet1']
 # Define your email settings
 email_address = 'trailidsam@gmail.com'
 email_password = 'sufapdhwpmytxyla'
-email_address1 = 'sampathgaming04@gmail.com
+email_address1 = 'sampathgaming04@gmail.com'
 
 # Connect to the SMTP server
 smtp_server = 'smtp.gmail.com'  # Update this for your email provider
