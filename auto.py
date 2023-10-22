@@ -1,50 +1,31 @@
 #!/usr/bin/env python
-
+import openpyxl
 import smtplib
 from datetime import datetime
-import openpyxl
-from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-
-# Load the Excel sheet with names and DOB
-excel_file = r'Book21.xlsx'
-workbook = openpyxl.load_workbook(excel_file)
+from email.mime.multipart import MIMEMultipart # Import BytesIO to work with file content in memory
+fp = r'Book21.xlsx'
+workbook = openpyxl.load_workbook(fp)
 sheet = workbook['Sheet1']
-
-# Define your email settings
-email_address = 'trailidsam@gmail.com'
-email_password = 'sufapdhwpmytxyla'
-email_address1 = 'sampathgaming04@gmail.com'
-
-# Connect to the SMTP server
-smtp_server = 'smtp.gmail.com'  # Update this for your email provider
-smtp_port = 587  # Update this for your email provider
-
-server = smtplib.SMTP(smtp_server, smtp_port)
-server.starttls()
-server.login(email_address, email_password)
-
-# Get today's date
 today = datetime.today().strftime('%m-%d')
-
-# Iterate through the Excel sheet
+from_email = 'trailidsam@gmail.com'
+password = 'sufapdhwpmytxyla'
+to_email = 'sampathgaming04@gmail.com'
+server = smtplib.SMTP('smtp.gmail.com', 587)
+server.starttls()
+server.login(from_email, password)
 for row in sheet.iter_rows(values_only=True):
-    name, dob = row
-
-    if today == dob:
-        # It's their birthday, send an email
-        message = MIMEMultipart()
-        message['From'] = email_address
-        message['To'] = email_address1
-        message['Subject'] = f'Happy Birthday, {name}!'
-
-        # Customize the email body as you like
-        body = f"Dear {name},\n\nHappy Birthday!\n\nBest wishes,\nVANQUISHERS"
-        message.attach(MIMEText(body, 'plain'))
-
-        # Send the email
-        server.sendmail(email_address, email_address1, message.as_string())
-        print(f"mail sent to {name} sucessfully ")
-
-# Quit the SMTP server
+    name, dob_str = row
+    if today == dob_str:
+        subject = 'Happy Birthday!'
+        message = f"Today is {name} 's Birthday! 🎉🎂\n\nBest wishes, Vanquishers"
+        msg = MIMEMultipart()
+        msg['From'] = from_email
+        msg['To'] = to_email
+        msg['Subject'] = subject
+        msg.attach(MIMEText(message, 'plain'))
+        server.sendmail(from_email, to_email, msg.as_string())
+        print(f" {name} Birthday email sent to  ({to_email})")
+        
 server.quit()
+workbook.close()
