@@ -24,14 +24,13 @@ server.starttls()
 server.login(email_address, email_password)
 
 # Get today's date
-today = datetime.date.today()
+today = datetime.today().strftime('%m-%d')
 
 # Iterate through the Excel sheet
 for row in sheet.iter_rows(min_row=2, values_only=True):
     name, dob = row
-    dob = dob.date()
 
-    if dob.month == today.month and dob.day == today.day:
+    if today == dob_str:
         # It's their birthday, send an email
         message = MIMEMultipart()
         message['From'] = email_address
@@ -39,7 +38,7 @@ for row in sheet.iter_rows(min_row=2, values_only=True):
         message['Subject'] = f'Happy Birthday, {name}!'
 
         # Customize the email body as you like
-        body = f"Dear {name},\n\nHappy Birthday!\n\nBest wishes,\nYour Name"
+        body = f"Dear {name},\n\nHappy Birthday!\n\nBest wishes,\nVANQUISHERS"
         message.attach(MIMEText(body, 'plain'))
 
         # Send the email
