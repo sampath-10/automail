@@ -8,8 +8,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out the code
-        uses: actions/checkout@v2.4
+      - name: Checkout code
+        uses: actions/checkout@v2.4  # Use a version that supports Node.js 16
+
 
       - name: Set up Python
         uses: actions/setup-python@v2
