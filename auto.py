@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import smtplib
-import datetime
+from datetime import datetime
 import openpyxl
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
