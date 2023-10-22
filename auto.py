@@ -7,7 +7,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
 # Load the Excel sheet with names and DOB
-excel_file = 'Book21.xlsx'
+excel_file = r'Book21.xlsx'
 workbook = openpyxl.load_workbook(excel_file)
 sheet = workbook['Sheet1']
 
