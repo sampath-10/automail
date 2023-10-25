@@ -7,7 +7,7 @@ from email.mime.multipart import MIMEMultipart # Import BytesIO to work with fil
 fp = r'Book21.xlsx'
 workbook = openpyxl.load_workbook(fp)
 sheet = workbook['Sheet1']
-today = datetime.today().strftime('%m-%d')
+today = datetime.today().strftime('%m/%d')
 from_email = 'trailidsam@gmail.com'
 password = 'sufapdhwpmytxyla'
 to_email = 'sampathgaming04@gmail.com'
@@ -16,6 +16,7 @@ server.starttls()
 server.login(from_email, password)
 for row in sheet.iter_rows(values_only=True):
     name, dob_str = row
+    print(dob_str==today)
     if today == dob_str:
         subject = 'Happy Birthday!'
         message = f"Today is {name} 's Birthday! 🎉🎂\n\nBest wishes, Vanquishers"
