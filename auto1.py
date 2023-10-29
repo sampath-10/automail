@@ -18,7 +18,7 @@ server.starttls()
 server.login(from_email, password)
 for row in sheet.iter_rows(values_only=True):
     name, dob_str = row
-    print(dob_str==today)
+    print(tomorrow_date,dob_str,dob_str==tomorrow_date)
     if tomorrow_date == dob_str:
         subject = 'Happy Birthday!'
         message = f"Today is {name} 's Birthday! 🎉🎂\n\nBest wishes, Vanquishers"
